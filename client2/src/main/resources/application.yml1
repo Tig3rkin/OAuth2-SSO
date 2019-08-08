@@ -1,0 +1,16 @@
+server:
+  port: 7777
+  servlet:
+    context-path: /client2
+security:
+  oauth2:
+    client:
+      client-id: tiger2
+      client-secret: passwd2
+      access-token-uri: http://localhost:9999/server/oauth/token
+      user-authorization-uri: http://localhost:9999/server/oauth/authorize
+    resource:
+      jwt:
+        key-uri: http://localhost:9999/server/oauth/token_key
+    authorization:
+      check-token-access: http://localhost:9999/server/oauth/check_token
