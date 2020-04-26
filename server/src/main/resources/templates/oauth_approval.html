@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>授权登录</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<!--<link rel="stylesheet" href="//i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css"/>-->
+	<style>
+		.block {
+			position: relative;
+		}
+
+		.ui-notice {
+			position: relative;
+			padding: 20px 15px;
+			box-sizing: border-box;
+		}
+
+		.ui-notice p {
+			color: #333;
+			font-weight: 600;
+		}
+
+		.ui-btn-primary {
+			background-color: #02cd93;
+			border-color: #02cd93;;
+		}
+
+		.ui-notice-btn {
+			padding: 50px 0px 15px;
+		}
+	</style>
+</head>
+<body>
+<div class="block">
+	<section class="ui-notice">
+		<p>是否授权：<span th:text="${session.authorizationRequest.clientId}">clientId</span>通过server登录？</p>
+		<div class="ui-notice-btn">
+			<form id='confirmationForm' name='confirmationForm' action="/server/oauth/authorize" method='post'>
+				<input name='user_oauth_approval' value='true' type='hidden'/>
+				<!--写好授权访问领域-->
+				<!--<input th:name="${s}" th:each="s : ${scopeList}"/>-->
+				<input name='authorize' value='授权' type='submit'/>
+				<!--<input type="radio" name="scope.user_info" value="true">授权</input>-->
+				<!--<input type="radio" name="scope.user_info" value="false" checked>取消</input>-->
+			</form>
+		</div>
+	</section>
+</div>
+</body>
+</html>

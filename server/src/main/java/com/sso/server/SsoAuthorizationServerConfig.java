@@ -36,14 +36,16 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
                 .withClient("tiger2")
                 .secret(passwordEncoder.encode("passwd2"))
                 .authorizedGrantTypes("authorization_code", "refresh_token")
-                .autoApprove(true)
+//                .autoApprove(true)
                 .scopes("all");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(jwtTokenStore())
-                .accessTokenConverter(jwtAccessTokenConverter());
+                .accessTokenConverter(jwtAccessTokenConverter())
+                .pathMapping("/oauth/confirm_access","/oauth/approvale/confirm")
+        ;
     }
 
     @Override
